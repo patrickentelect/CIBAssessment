@@ -1,5 +1,5 @@
 
-namespace phonebookApi.Models
+namespace PhonebookApi.Data.Models
 {
     public class Entry
     {

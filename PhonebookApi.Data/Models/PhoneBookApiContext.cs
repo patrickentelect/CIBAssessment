@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace phonebookApi.Models
+namespace PhonebookApi.Data.Models
 {
     public class PhoneBookApiContext : DbContext
     {
