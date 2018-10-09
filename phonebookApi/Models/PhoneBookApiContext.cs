@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace phonebookApi.Models
 {
-    public class PhonebookApiContext : DbContext
+    public class PhoneBookApiContext : DbContext
     {
         public DbSet<PhoneBook> PhoneBooks { get; set; }
         public DbSet<Entry> Entries { get; set; }
 
-        public PhonebookApiContext(DbContextOptions<PhonebookApiContext> options)
+        public PhoneBookApiContext(DbContextOptions<PhoneBookApiContext> options)
         : base(options)
         { }
     }
