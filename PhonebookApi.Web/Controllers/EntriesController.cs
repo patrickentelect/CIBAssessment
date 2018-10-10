@@ -27,10 +27,10 @@ namespace PhonebookApi.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<Entry> Get(int id)
+        [HttpGet("EntriesByPhoneBookId/{phoneBookId}")]
+        public ActionResult<IEnumerable<Entry>> EntriesByPhoneBookId(int phoneBookId)
         {
-            return this._entryService.Get(id);
+            return this._entryService.GetByPhoneBookId(phoneBookId);
         }
 
         // POST api/values

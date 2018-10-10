@@ -9,5 +9,6 @@ namespace PhonebookApi.Service.Services
         List<Entry> Get();
         void Update(Entry entry);
         void Add(Entry entry);
+        List<Entry> GetByPhoneBookId(int phoneBookId);
     }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom'
 
 export class PhoneBooks extends Component {
   displayName = PhoneBooks.name
@@ -27,7 +28,11 @@ export class PhoneBooks extends Component {
           {phoneBooks.map(phoneBooks =>
             <tr key={phoneBooks.phoneBookId}>
               <td>{phoneBooks.name}</td>
-              <td><button>View Entries</button></td>
+              <td>
+                <NavLink to={`/entries/${phoneBooks.phoneBookId}`}>
+                  View Entries
+                </NavLink>
+                </td>
             </tr>
           )}
         </tbody>

@@ -29,6 +29,12 @@ namespace PhonebookApi.Service.Services
             return this._context.Entries.ToList();
         }
 
+        public List<Entry> GetByPhoneBookId(int phoneBookId)
+        {
+            return this._context.Entries.Where(x => x.PhonebookId == phoneBookId)
+                                        .ToList();
+        }
+
         public void Update(Entry entry)
         {
             this._context.Entries.Update(entry);
