@@ -1,11 +1,13 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace PhonebookApi.Data.Models
 {
     public class PhoneBook
     {
-        public int PhoneBookId;
-        public string Name;
-        public List<Entry> Entries;
+        //[Key]
+        public int PhoneBookId { get; set; }
+        public string Name { get; set; }
+        public List<Entry> Entries { get; set; }
     }
 }

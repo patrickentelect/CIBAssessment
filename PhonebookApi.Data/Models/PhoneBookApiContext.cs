@@ -32,16 +32,17 @@ namespace PhonebookApi.Data.Models
                 {
                     PhoneBookId = phoneBook.PhoneBookId,
                     Name = phoneBook.Name,
-                    Entries = new List<Entry>
-                    {
-                        new Entry
-                        {
-                            EntryId = entry.EntryId,
-                            Name = entry.Name,
-                            PhonebookId = phoneBook.PhoneBookId,
-                            PhoneBook = phoneBook
-                        }
-                    }
+                }
+            );
+
+            modelBuilder.Entity<Entry>()
+            .HasData(
+                new
+                {
+                    EntryId = entry.EntryId,
+                    Name = entry.Name,
+                    PhonebookId = phoneBook.PhoneBookId,
+                    //PhoneBook = phoneBook
                 }
             );
         }
