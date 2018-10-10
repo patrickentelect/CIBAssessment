@@ -20,7 +20,7 @@ export default class App extends Component {
         <Route path='/phoneBooks' component={PhoneBooks} />
         <Route path='/entries/:phoneBookId' component={Entries} />
         <Route path='/edit/:entryId' component={EditEntry} />
-        <Route path='/create/' component={EditEntry} />
+        <Route path='/create/:phonebookId' component={EditEntry} />
       </Layout>
     );
   }

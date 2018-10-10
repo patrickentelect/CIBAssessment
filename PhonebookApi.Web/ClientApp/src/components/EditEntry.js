@@ -21,6 +21,19 @@ export class EditEntry extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        var phonebookId = this.props.match.params.phonebookId;
+        if (phonebookId) {
+            var emptyEntry = {
+                entryId: 0,
+                name: "",
+                phoneNumber: "",
+                phonebookId: phonebookId,
+            }
+            this.setState({ entry: emptyEntry, loading: false });
+        }
+    }
+
     handleSubmit(event) {
         event.preventDefault();
 
@@ -29,7 +42,7 @@ export class EditEntry extends Component {
         //     data.append(element.id, element.value)
         // });
         const data = {}
-        Array.prototype.forEach.call(event.target.elements,element => {
+        Array.prototype.forEach.call(event.target.elements, element => {
             data[element.id] = element.value;
             //data.append(element.id, element.value)
         });
@@ -43,24 +56,24 @@ export class EditEntry extends Component {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json',                  
+                    'Accept': 'application/json',
                 },
             });
         }
-        else{
+        else {
             fetch('http://localhost:5000/api/Entries', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json',                  
+                    'Accept': 'application/json',
                 },
             });
         }
     }
 
-     renderEntryForm(entry) {
+    renderEntryForm(entry) {
         return (
             <form onSubmit={this.handleSubmit}>
                 <input type="hidden"

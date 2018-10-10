@@ -50,6 +50,9 @@ export class Entries extends Component {
     return (
       <div>
         <h1>Entries</h1>
+        <NavLink to={`/create/${this.props.match.params.phoneBookId}`}>
+                  Create
+                </NavLink>
         {contents}
       </div>
     );
