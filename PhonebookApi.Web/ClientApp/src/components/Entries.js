@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom'
 
 export class Entries extends Component {
   displayName = Entries.name
@@ -31,7 +32,9 @@ export class Entries extends Component {
             <tr key={entries.entryId}>
               <td>{entries.name}</td>
               <td>{entries.phoneNumber}</td>
-              <td><button>Edit</button></td>
+              <td><NavLink to={`/edit/${entries.entryId}`}>
+                  Edit
+                </NavLink></td>
             </tr>
           )}
         </tbody>

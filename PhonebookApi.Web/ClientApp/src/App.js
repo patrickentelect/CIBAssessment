@@ -6,6 +6,7 @@ import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { PhoneBooks } from './components/PhoneBooks';
 import { Entries } from './components/Entries';
+import {EditEntry} from './components/EditEntry';
 
 export default class App extends Component {
   displayName = App.name
@@ -18,6 +19,8 @@ export default class App extends Component {
         <Route path='/fetchdata' component={FetchData} />
         <Route path='/phoneBooks' component={PhoneBooks} />
         <Route path='/entries/:phoneBookId' component={Entries} />
+        <Route path='/edit/:entryId' component={EditEntry} />
+        <Route path='/create/' component={EditEntry} />
       </Layout>
     );
   }

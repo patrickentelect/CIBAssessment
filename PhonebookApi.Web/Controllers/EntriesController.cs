@@ -26,6 +26,12 @@ namespace PhonebookApi.Controllers
             return this._entryService.Get();
         }
 
+        [HttpGet("{entryId}")]
+        public ActionResult<Entry> Get(int entryId)
+        {
+            return this._entryService.Get(entryId);
+        }
+
         // GET api/values/5
         [HttpGet("EntriesByPhoneBookId/{phoneBookId}")]
         public ActionResult<IEnumerable<Entry>> EntriesByPhoneBookId(int phoneBookId)
@@ -44,13 +50,20 @@ namespace PhonebookApi.Controllers
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put(Entry entry)
         {
             if (ModelState.IsValid)
             {
                 this._entryService.Update(entry);
             }
+        }
+
+
+                // PUT api/values/5
+        [HttpPut("{entryId}")]
+        public void Put(int entryId, [FromBody] string value)
+        {
         }
 
         // DELETE api/values/5

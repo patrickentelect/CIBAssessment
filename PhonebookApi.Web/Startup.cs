@@ -47,12 +47,7 @@ namespace phonebookApi
             {
                 app.UseDeveloperExceptionPage();
             }
-            // else
-            // {
-            //     app.UseHsts();
-            // }
             app.UseCors("AllowSpecificOrigin");
-            // app.UseHttpsRedirection();
             app.UseMvc();
         }
 
@@ -68,7 +63,11 @@ namespace phonebookApi
 
                 options.AddPolicy(
                     "AllowSpecificOrigin",
-                    builder => builder.WithOrigins(allowedOrigins));
+                    builder => builder
+                        .WithOrigins(allowedOrigins)
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials());
             });
         }
 
