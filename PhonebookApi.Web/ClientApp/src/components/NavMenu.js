@@ -30,7 +30,12 @@ export class NavMenu extends Component {
             </LinkContainer>
             <LinkContainer to={'/fetchdata'}>
               <NavItem>
-                <Glyphicon glyph='th-list' /> Fetch data
+                <Glyphicon glyph='th-list' /> Fetch data tt
+              </NavItem>
+            </LinkContainer>
+            <LinkContainer to={'/phoneBooks'}>
+              <NavItem>
+                <Glyphicon glyph='th-list' /> Phone Books
               </NavItem>
             </LinkContainer>
           </Nav>

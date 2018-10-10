@@ -28,6 +28,7 @@ namespace phonebookApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureCorsService(services);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             var connection = "Data Source=phonebook.db";
@@ -46,13 +47,29 @@ namespace phonebookApi
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
+            // else
+            // {
+            //     app.UseHsts();
+            // }
+            app.UseCors("AllowSpecificOrigin");
+            // app.UseHttpsRedirection();
             app.UseMvc();
+        }
+
+        private void ConfigureCorsService(IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                //TODO: move to appsettings
+                var allowedOrigins = new[]
+                {
+                    "http://localhost:3000"
+                };
+
+                options.AddPolicy(
+                    "AllowSpecificOrigin",
+                    builder => builder.WithOrigins(allowedOrigins));
+            });
         }
 
         private static void UpdateDatabase(IApplicationBuilder app)
