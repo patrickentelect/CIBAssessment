@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using PhonebookApi.Data.Models;
 
 namespace PhonebookApi.Service.Services
@@ -13,12 +15,12 @@ namespace PhonebookApi.Service.Services
 
         public PhoneBook Get(int phoneBookId)
         {
-            throw new System.NotImplementedException();
+            return this._context.PhoneBooks.First(x => x.PhoneBookId == phoneBookId);
         }
 
         public List<PhoneBook> Get()
         {
-            throw new System.NotImplementedException();
+            return this._context.PhoneBooks.ToList();//.Include(p => p.Entries).ToList();
         }
     }
 }

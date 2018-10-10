@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PhonebookApi.Data.Models;
+using PhonebookApi.Service.Services;
 
 namespace phonebookApi
 {
@@ -32,6 +33,9 @@ namespace phonebookApi
             var connection = "Data Source=phonebook.db";
                 services.AddDbContext<PhoneBookApiContext>
                     (options => options.UseSqlite(connection));
+
+            services.AddTransient<IEntryService, EntryService>();
+            services.AddTransient<IPhoneBookService, PhonebookBookService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

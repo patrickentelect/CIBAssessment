@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\phonebookapi.data\PhonebookApi.Data.csproj" />
+    <ProjectReference Include="..\PhonebookApi.Service\PhonebookApi.Service.csproj" />
   </ItemGroup>
 
 </Project>
