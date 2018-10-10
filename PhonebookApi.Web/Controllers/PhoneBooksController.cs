@@ -10,6 +10,11 @@ namespace phonebookApi.Controllers
     [ApiController]
     public class PhoneBooksController : ControllerBase
     {
+        public PhoneBooksController()
+        {
+            
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
