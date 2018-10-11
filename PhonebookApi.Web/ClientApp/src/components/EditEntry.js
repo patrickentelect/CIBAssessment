@@ -52,6 +52,8 @@ export class EditEntry extends Component {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
+            }).then(x => {
+                this.props.history.push(`/entries/${data.phonebookId}`);
             });
         }
         else {
@@ -63,8 +65,11 @@ export class EditEntry extends Component {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
+            }).then(x => {
+                this.props.history.push(`/entries/${data.phonebookId}`);
             });
         }
+        
     }
 
     renderEntryForm(entry) {
