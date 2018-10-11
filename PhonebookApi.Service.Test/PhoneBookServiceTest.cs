@@ -15,9 +15,40 @@ namespace PhonebookApi.Service.Test
         [Fact]
         public void Get_ReturnsAListOfPhoneBooks()
         {
+            // Arrange
             var mockRepo = new Mock<IPhoneBookRepository>();
             mockRepo.Setup(service => service.GetAll())
                 .Returns(GetFakePhoneBooks());
+            var phoneBookService = new PhonebookBookService(mockRepo.Object);
+
+            // Act
+            var result = phoneBookService.Get();
+
+            // Assert
+            Assert.IsType<List<PhoneBook>>(result);
+            // var model = Assert.IsAssignableFrom<IEnumerable<StormSessionViewModel>>(
+            //     actionResult.ViewData.Model);
+            Assert.Equal(2, result.Count());
+        } 
+        
+        [Fact]
+        public void GetById_ReturnsAPhoneBook()
+        {
+            // Arrange
+            var testId = 1;
+            var mockRepo = new Mock<IPhoneBookRepository>();
+            mockRepo.Setup(service => service.GetById(testId))
+                .Returns(GetFakePhoneBooks().First());
+            var phoneBookService = new PhonebookBookService(mockRepo.Object);
+
+            // Act
+            var result = phoneBookService.Get(testId);
+
+            // Assert
+            Assert.IsType<PhoneBook>(result);
+            // var model = Assert.IsAssignableFrom<IEnumerable<StormSessionViewModel>>(
+            //     actionResult.ViewData.Model);
+            Assert.Equal(testId, result.PhoneBookId);
         }
 
         private IQueryable<PhoneBook> GetFakePhoneBooks()
@@ -62,8 +93,7 @@ namespace PhonebookApi.Service.Test
                 Entries = entries2
             };
 
-            return
-             new List<PhoneBook>
+            return new List<PhoneBook>
             {
                 phoneBook1,
                 phoneBook2

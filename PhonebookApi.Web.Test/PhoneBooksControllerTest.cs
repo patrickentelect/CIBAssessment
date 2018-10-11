@@ -34,7 +34,7 @@ namespace PhonebookApi.Web.Test
         }
 
         [Fact]
-        public void GetWithId_ReturnsAListOfPhoneBooks()
+        public void Get_WithId_ReturnsAPhoneBook()
         {
             // Arrange
             var testPhoneBookId = 1;
