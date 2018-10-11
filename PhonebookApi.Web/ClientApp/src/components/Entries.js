@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
+import ReactTable from "react-table";
+import matchSorter from 'match-sorter';
 
 export class Entries extends Component {
   displayName = Entries.name
@@ -19,26 +21,50 @@ export class Entries extends Component {
 
   static renderEntriesTable(entries) {
     return (
-      <table className='table'>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Phone Number</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {entries.map(entries =>
-            <tr key={entries.entryId}>
-              <td>{entries.name}</td>
-              <td>{entries.phoneNumber}</td>
-              <td><NavLink to={`/edit/${entries.entryId}`}>
-                  Edit
-                </NavLink></td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+        <ReactTable
+          data={entries}
+          filterable
+          defaultFilterMethod={(filter, row) =>
+            String(row[filter.id]) === filter.value}
+          columns={[
+            {
+              Header: "Details",
+              columns: [
+                {
+                  Header: "Name",
+                  accessor: "name",
+                  filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["name"] }),
+                  filterAll: true
+                },
+                {
+                  Header: "Phone Number",
+                  id: "phoneNumber",
+                  accessor: d => d.phoneNumber,
+                  filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["phoneNumber"] }),
+                  filterAll: true
+                }
+              ]
+            },
+            {
+              Header: "Info",
+              columns: [
+                {
+                  Header: "",
+                  Cell: row => (
+                    <div>
+                    <NavLink to={`/edit/${row.original.entryId}`}>
+                      Edit
+                    </NavLink>
+                    </div>
+                  )
+                },
+              ]
+            }
+          ]}
+          defaultPageSize={4}
+          className="-striped -highlight"/>
     );
   }
 
@@ -51,10 +77,63 @@ export class Entries extends Component {
       <div>
         <h1>Entries</h1>
         <NavLink to={`/create/${this.props.match.params.phoneBookId}`}>
-                  Create
+          Create
                 </NavLink>
         {contents}
       </div>
     );
+  }
+
+  //********************************************************* */
+  // range = len => {
+  //   const arr = [];
+  //   for (let i = 0; i < len; i++) {
+  //     arr.push(i);
+  //   }
+  //   return arr;
+  // };
+
+  // newPerson = () => {
+  //   const statusChance = Math.random();
+  //   return {
+  //     firstName: namor.generate({ words: 1, numbers: 0 }),
+  //     lastName: namor.generate({ words: 1, numbers: 0 }),
+  //     age: Math.floor(Math.random() * 30),
+  //     visits: Math.floor(Math.random() * 100),
+  //     progress: Math.floor(Math.random() * 100),
+  //     status:
+  //       statusChance > 0.66
+  //         ? "relationship"
+  //         : statusChance > 0.33 ? "complicated" : "single"
+  //   };
+  // };
+
+  // makeData(len = 5553) {
+  // return range(len).map(d => {
+  //   return {
+  //     ...newPerson(),
+  //     children: range(10).map(newPerson)
+  //     };
+  //   });
+  // }
+  makeData() {
+    return [
+      {
+        firstName: "John",
+        lastName: "michael",
+        age: 65,
+        visits: 562,
+        progress: 85,
+        status: "relationship"
+      },
+      {
+        firstName: "John",
+        lastName: "peter",
+        age: 65,
+        visits: 562,
+        progress: 85,
+        status: "relationship"
+      },
+    ]
   }
 }
