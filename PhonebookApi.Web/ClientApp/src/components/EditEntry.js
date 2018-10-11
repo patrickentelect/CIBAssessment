@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FormGroup, ButtonGroup, Button } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom'
 
 export class EditEntry extends Component {
     displayName = "Edit Entry"
@@ -95,11 +96,11 @@ export class EditEntry extends Component {
                         id="phoneNumber"
                         placeholder="Phone Number"
                         defaultValue={entry.phoneNumber} />
-                </FormGroup>
-                <ButtonGroup className="pull-right">
-                    <Button type="submit" bsStyle="success">Save</Button>
-                    <Button bsStyle="danger">Back</Button>
-                </ButtonGroup>
+                </FormGroup>                
+                <Button type="submit" bsStyle="success">Save</Button>
+                <NavLink to={`/entries/${entry.phonebookId}`}>
+                    Back
+                </NavLink>                
                 <div style={{ clear: 'both' }}></div>
             </form>
         );

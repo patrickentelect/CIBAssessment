@@ -28,8 +28,6 @@ namespace PhonebookApi.Web.Test
 
             // Assert
             var result = Assert.IsType<List<PhoneBook>>(okResult.Value);
-            // var model = Assert.IsAssignableFrom<IEnumerable<StormSessionViewModel>>(
-            //     actionResult.ViewData.Model);
             Assert.Equal(2, result.Count());
         }
 
@@ -48,8 +46,6 @@ namespace PhonebookApi.Web.Test
 
             // Assert
             var result = Assert.IsType<PhoneBook>(okResult.Value);
-            // var model = Assert.IsAssignableFrom<IEnumerable<StormSessionViewModel>>(
-            //     actionResult.ViewData.Model);
             Assert.Equal(testPhoneBookId,result.PhoneBookId);
         }
 
