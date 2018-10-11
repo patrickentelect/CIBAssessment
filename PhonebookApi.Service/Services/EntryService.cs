@@ -1,44 +1,41 @@
 using System.Collections.Generic;
 using System.Linq;
 using PhonebookApi.Data.Models;
+using PhonebookApi.Data.Repositories;
 
 namespace PhonebookApi.Service.Services
 {
     public class EntryService : IEntryService
     {
-        private PhoneBookApiContext _context;
-
-        public EntryService(PhoneBookApiContext context)
+        IEntryRepository _entryRepository;
+        public EntryService(IEntryRepository entryRepository)
         {
-            this._context = context;
+            this._entryRepository = entryRepository;
         }
 
         public void Add(Entry entry)
         {
-            this._context.Entries.Add(entry);
-            this._context.SaveChanges();
+            this._entryRepository.Insert(entry);
         }
 
         public Entry Get(int entryId)
         {
-            return this._context.Entries.First(x => x.EntryId == entryId);
+            return this._entryRepository.GetById(entryId);
         }
 
         public List<Entry> Get()
         {
-            return this._context.Entries.ToList();
+            return this._entryRepository.GetAll().ToList();
         }
 
         public List<Entry> GetByPhoneBookId(int phoneBookId)
         {
-            return this._context.Entries.Where(x => x.PhonebookId == phoneBookId)
-                                        .ToList();
+            return this._entryRepository.GetByPhoneBook(phoneBookId).ToList();
         }
 
         public void Update(Entry entry)
         {
-            this._context.Entries.Update(entry);
-            this._context.SaveChanges();
+            this._entryRepository.Update(entry);
         }
     }
 }

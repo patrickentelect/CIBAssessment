@@ -39,6 +39,7 @@ namespace phonebookApi
             services.AddTransient<IEntryService, EntryService>();
             services.AddTransient<IPhoneBookService, PhonebookBookService>();
             services.AddScoped<IPhoneBookRepository, PhoneBookRepository>();
+            services.AddScoped<IEntryRepository, EntryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
