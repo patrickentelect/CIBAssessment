@@ -37,18 +37,11 @@ export class EditEntry extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        // const data = new FormData();
-        // Array.prototype.forEach.call(event.target.elements,element => {
-        //     data.append(element.id, element.value)
-        // });
         const data = {}
         Array.prototype.forEach.call(event.target.elements, element => {
             data[element.id] = element.value;
-            //data.append(element.id, element.value)
         });
 
-        //const data = new FormData();
-        // PUT request for Edit employee.
         if (this.state.entry.entryId) {
             fetch('http://localhost:5000/api/Entries', {
                 method: 'PUT',

@@ -28,7 +28,6 @@ export class Entries extends Component {
             String(row[filter.id]) === filter.value}
           columns={[
             {
-              Header: "Details",
               columns: [
                 {
                   Header: "Name",
@@ -44,14 +43,10 @@ export class Entries extends Component {
                   filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["phoneNumber"] }),
                   filterAll: true
-                }
-              ]
-            },
-            {
-              Header: "Info",
-              columns: [
+                },
                 {
                   Header: "",
+                  filterable: false,
                   Cell: row => (
                     <div>
                     <NavLink to={`/edit/${row.original.entryId}`}>
@@ -59,9 +54,9 @@ export class Entries extends Component {
                     </NavLink>
                     </div>
                   )
-                },
+                }
               ]
-            }
+            },
           ]}
           defaultPageSize={4}
           className="-striped -highlight"/>
@@ -77,63 +72,10 @@ export class Entries extends Component {
       <div>
         <h1>Entries</h1>
         <NavLink to={`/create/${this.props.match.params.phoneBookId}`}>
-          Create
-                </NavLink>
+          Create New
+        </NavLink>
         {contents}
       </div>
     );
-  }
-
-  //********************************************************* */
-  // range = len => {
-  //   const arr = [];
-  //   for (let i = 0; i < len; i++) {
-  //     arr.push(i);
-  //   }
-  //   return arr;
-  // };
-
-  // newPerson = () => {
-  //   const statusChance = Math.random();
-  //   return {
-  //     firstName: namor.generate({ words: 1, numbers: 0 }),
-  //     lastName: namor.generate({ words: 1, numbers: 0 }),
-  //     age: Math.floor(Math.random() * 30),
-  //     visits: Math.floor(Math.random() * 100),
-  //     progress: Math.floor(Math.random() * 100),
-  //     status:
-  //       statusChance > 0.66
-  //         ? "relationship"
-  //         : statusChance > 0.33 ? "complicated" : "single"
-  //   };
-  // };
-
-  // makeData(len = 5553) {
-  // return range(len).map(d => {
-  //   return {
-  //     ...newPerson(),
-  //     children: range(10).map(newPerson)
-  //     };
-  //   });
-  // }
-  makeData() {
-    return [
-      {
-        firstName: "John",
-        lastName: "michael",
-        age: 65,
-        visits: 562,
-        progress: 85,
-        status: "relationship"
-      },
-      {
-        firstName: "John",
-        lastName: "peter",
-        age: 65,
-        visits: 562,
-        progress: 85,
-        status: "relationship"
-      },
-    ]
   }
 }
