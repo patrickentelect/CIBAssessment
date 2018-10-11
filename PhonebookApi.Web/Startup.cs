@@ -59,15 +59,15 @@ namespace phonebookApi
             services.AddCors(options =>
             {
                 //TODO: move to appsettings
-                var allowedOrigins = new[]
-                {
-                    "http://localhost:3000"
-                };
+                // var allowedOrigins = new[]
+                // {
+                //     "http://localhost:3000"
+                // };
 
                 options.AddPolicy(
                     "AllowSpecificOrigin",
                     builder => builder
-                        .WithOrigins(allowedOrigins)
+                        .AllowAnyOrigin()
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials());
