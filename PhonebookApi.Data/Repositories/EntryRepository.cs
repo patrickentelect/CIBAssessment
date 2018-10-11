@@ -38,7 +38,7 @@ namespace PhonebookApi.Data.Repositories
 
         public void Update(Entry entity)
         {
-            this._phoneBookApiContext.Entries.Remove(entity);
+            this._phoneBookApiContext.Entries.Update(entity);
             this._phoneBookApiContext.SaveChanges();
         }
     }

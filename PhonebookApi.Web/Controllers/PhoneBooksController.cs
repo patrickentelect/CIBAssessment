@@ -23,14 +23,14 @@ namespace PhonebookApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<PhoneBook>> Get()
         {
-            return this._phoneBookService.Get();//new string[] { "value1", "value2" };
+            return Ok(this._phoneBookService.Get());//new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<PhoneBook> Get(int id)
         {
-            return this._phoneBookService.Get(id);
+            return Ok(this._phoneBookService.Get(id));
         }
 
         // POST api/values

@@ -7,5 +7,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
+  <ItemGroup>
+    <ProjectReference Include="..\phonebookapi.data\PhonebookApi.Data.csproj" />
+  </ItemGroup>
 </Project>
